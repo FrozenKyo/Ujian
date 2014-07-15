@@ -1,0 +1,56 @@
+<h1>Laporan</h1>
+<?php 
+$headers = $this->header;
+$details = $this->detail;
+$transaksiUrl = $this->url('transaksi', array('lang'=>$this->lang, 'action'=>'index'));
+$convertPdfUrl = $this->url('convertpdf', array('action'=>'index'));
+$convertExcelUrl = $this->url('convertexcel', array('action'=>'index'));
+$convertChartUrl = $this->url('convertchart', array('action'=>'index'));
+ ?>
+<a href="<?php echo $transaksiUrl; ?>">Back to transactions list</a>&nbsp;&nbsp;
+<a href="<?php echo $convertPdfUrl; ?>">Convert to PDF</a>&nbsp;&nbsp;
+<a href="<?php echo $convertExcelUrl; ?>">Convert to Excel</a>&nbsp;&nbsp;
+<a href="<?php echo $convertChartUrl; ?>">Convert to Excel Chart</a><br>
+<div>
+	<div id="header">
+		<?php foreach ($headers as $header) : ?>
+			<?php echo 'Nomor Transaksi : ' . $header->getId(); ?><br>
+			<?php echo 'Tanggal : ' . $header->getTgl(); ?><br>
+			<?php foreach ($kasirs as $kasir) : ?>
+				<?php if ($header->getKasir() == $kasir->getId()) : ?>
+				<?php echo 'Kasir : ' . $kasir->getNama(); ?><br>
+				<?php endif; ?>
+			<?php endforeach ?>
+			<?php echo 'Customer : ' . $header->getCustomer(); ?><br>
+			<div id="detail">
+				<table class="CustomTableTrans">
+					<tr>
+						<td>Nama Buku</td>
+						<td>Qty</td>
+						<td>Harga</td>
+						<td>Subtotal</td>
+					</tr>
+					<?php foreach ($details as $detail) : ?>
+						<?php if ($detail->getId() == $header->getId()) : ?>
+						<tr>
+							<?php foreach ($books as $book) : ?>
+								<?php if ($detail->getBuku() == $book->getId()) : ?>
+								<td><?php echo $book->getNama(); ?></td>
+								<?php endif; ?>
+							<?php endforeach ?>
+							<td><?php echo $detail->getQty(); ?></td>
+							<td><?php echo $detail->getHarga(); ?></td>
+							<td><?php echo $detail->getSubtotal(); ?></td>
+						</tr>
+						<?php endif; ?>
+					<?php endforeach ?>
+					<tr>
+						<td colspan="3">Total</td>
+						<td colspan="2"><?php echo $header->getTotal(); ?></td>
+					</tr>
+				</table>
+			</div>
+			<br>
+		<?php endforeach; ?>
+	</div>
+<div>

@@ -1,0 +1,31 @@
+<h1>Transaksi Penjualan</h1><br />
+<?php 
+	$newEntryUrl = $this->url('transaksi', array('action'=>'penjualan'));
+	$reportUrl = $this->url('transaksi', array('action'=>'report'));
+?>
+<a href="<?php echo $newEntryUrl; ?>">Add Transaction</a> &nbsp;
+<a href="<?php echo $reportUrl; ?>">Report/History</a> &nbsp;
+<table class="CustomTable">
+	<tr>
+		<td>Kode Transaksi</td>
+		<td>Tanggal</td>
+		<td>Kasir</td>
+		<td>Customer</td>		
+		<td>Total</td>
+		<td>Status</td>
+		<td></td>
+	</tr>
+<?php foreach ($paginator as $header) : ?>
+    <tr>
+    	<td><?php echo $header->getId(); ?></td>
+    	<td><?php echo $header->getTgl(); ?></td>
+    	<td><?php echo $header->getKasir(); ?></td>
+    	<td><?php echo $header->getCustomer(); ?></td>
+    	<td><?php echo $header->getTotal(); ?></td>
+    	<td><?php echo ($header->getStatus() == 1) ? "Active" : "Inactive"; ?></td>
+    	<td><a href="<?php echo $this->url('transaksi', array('action'=>'invoice', 'page'=>$header->getId())); ?>">Invoice</a></td>
+    </tr>
+<?php endforeach; ?>
+</table>
+<br>
+<?= ( count($paginator) > 0 ) ? $this->paginationControl($paginator, 'Sliding', 'pager-transaksi.phtml', array('lang'=>$lang)) : ""; ?>

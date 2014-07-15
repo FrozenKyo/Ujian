@@ -1,0 +1,48 @@
+<h1>Invoice</h1>
+<!--?php var_dump($this->details); ?-->
+<br>
+<div>
+	<div id="header">
+		<?php $headers = $this->header; $details = $this->details; ?>
+		<?php foreach ($headers as $header) : ?>
+			<div><?php echo 'Nomor Transaksi : ' . $header->getId(); ?></div>
+			<div><?php echo 'Tanggal : ' . $header->getTgl(); ?></div>
+			<?php foreach ($kasirs as $kasir) : ?>
+				<?php if ($header->getKasir() == $kasir->getId()) : ?>
+				<?php echo 'Kasir : ' . $kasir->getNama(); ?><br>
+				<?php endif; ?>
+			<?php endforeach ?>
+			<?php echo 'Customer : ' . $header->getCustomer(); ?><br>
+			<div id="detail">
+				<table class="CustomTableInvoice">
+					<tr>
+						<td>No.</td>
+						<td>Nama Buku</td>
+						<td>Qty</td>
+						<td>Harga</td>
+						<td>Subtotal</td>
+					</tr>
+					<?php $total = 0; $noUrut = 1 ?>
+					<?php foreach ($details as $detail) : ?>
+					<tr>
+						<td><?php echo $noUrut; $noUrut++; ?></td>
+						<?php foreach ($books as $book) : ?>
+							<?php if ($detail->getBuku() == $book->getId()) : ?>
+							<td><?php echo $book->getNama(); ?></td>
+							<?php endif; ?>
+						<?php endforeach ?>
+						<td><?php echo $detail->getQty(); ?></td>
+						<td><?php echo $detail->getHarga(); ?></td>
+						<td><?php echo $detail->getSubtotal(); $total += $detail->getSubtotal(); ?></td>
+					</tr>
+					<?php endforeach; ?>
+				<tr>
+					<td colspan=4>Total</td>
+					<td><?php echo $total; ?></td>
+				</tr>
+				</table>
+			</div>
+			<br>
+		<?php endforeach; ?>
+	</div>
+<div>

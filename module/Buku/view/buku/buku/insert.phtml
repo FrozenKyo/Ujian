@@ -1,0 +1,73 @@
+<h1>Insert Book</h1>
+
+<?php
+$form = $this -> form;
+$form->setAttribute('action', $this->url(
+           'buku',
+           array(
+	           'action' => 'insert',
+	       )
+       ));
+$form -> prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div id='formContainer'>
+	<div id='formMessage'>
+		<ul>
+		<?php
+			if ($this->messages) {
+				foreach ($this->messages as $message) {
+					echo '<li>' . $message . '</li>';
+				}
+			}
+		?>
+		</ul>
+	</div>
+	<div id='formNama'>
+		<?php
+		$txtNama = $form->get('nama');
+		$txtNama->setValue($this->nama);
+		echo $this -> formLabel($form -> get('nama'));?><br><?php
+		echo $this -> formElement($form -> get('nama'));?><br><?php
+		echo $this -> formElementErrors($form -> get('nama'));
+		?>
+	</div>
+	<br>
+	<div id='formStok'>
+		<?php
+		$txtStok = $form -> get('stok');
+		$txtStok->setValue($this->stok);
+		echo $this -> formLabel($form -> get('stok'));?><br><?php
+		echo $this -> formElement($form -> get('stok'));?><br><?php
+		echo $this -> formElementErrors($form -> get('stok'));
+		?>
+	</div>
+	<br>
+	<div id='formHarga'>
+		<?php
+		$txtHarga = $form -> get('harga');
+		$txtHarga->setValue($this->harga);
+		echo $this -> formLabel($form -> get('harga'));?><br><?php
+		echo $this -> formElement($form -> get('harga'));?><br><?php
+		echo $this -> formElementErrors($form -> get('harga'));
+		?>
+	</div>
+	<br>
+	<!--div id='formStatus'>
+		<?php
+		echo $this -> formLabel($form -> get('status'));?><br><?php
+		echo $this -> formElement($form -> get('status'));?><br><?php
+		echo $this -> formElementErrors($form -> get('status'));
+		?>
+	</div-->
+	<div id='formSaveEntry'>
+		<?php
+		echo $this -> formElement($form -> get('save'));
+		echo $this -> formElementErrors($form -> get('save'));
+		?>
+	</div>
+
+</div>
+
+<?php echo $this->form()->closeTag($form); ?>

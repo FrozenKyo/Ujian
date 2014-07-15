@@ -1,0 +1,47 @@
+<h1>Welcome to login page!</h1>
+
+<?php
+$form = $this -> form;
+$form->setAttribute('action', $this->url(
+           'auth'
+       ));
+$form -> prepare();
+echo $this->form()->openTag($form);
+?>
+
+<div id='formContainer'>
+	<div id='formMessage'>
+		<?php
+			if ($this -> messages) {
+				foreach ($this->messages as $message) {
+					echo $message;
+				}
+			}
+		?>
+	</div>
+	<div id='formUsername'>
+		<?php
+		echo $this -> formLabel($form -> get('txtUsername'));?><br><?php
+		echo $this -> formElement($form -> get('txtUsername'));?><br><?php
+		echo $this -> formElementErrors($form -> get('txtUsername'));
+		?>
+	</div>
+	<br>
+	<div id='formPassword'>
+		<?php
+		echo $this -> formLabel($form -> get('txtPassword'));?><br><?php
+		echo $this -> formElement($form -> get('txtPassword'));?><br><?php
+		echo $this -> formElementErrors($form -> get('txtPassword'));
+		?>
+	</div>
+	<br>
+	<div id='formLoginSubmit'>
+		<?php
+		echo $this -> formElement($form -> get('btnLogin'));
+		echo $this -> formElementErrors($form -> get('btnLogin'));
+		?>
+	</div>
+
+</div>
+
+<?php echo $this->form()->closeTag($form); ?>

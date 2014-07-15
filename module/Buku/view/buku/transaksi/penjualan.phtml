@@ -1,0 +1,119 @@
+<h1>Entry Transaksi</h1>
+<?php 
+    $id = $this->id;
+    //$tgl = now($date());
+	$kasir = $this->kasir;
+	$namaBuku = $this->namaBuku;
+	$buku = $this->buku;
+	$detail = $this->detail;
+	$kasir = $this->kasir;
+	$form = $this -> form;
+	$form->setAttribute('action', $this->url(
+	           'transaksi',
+	            array(
+		            'action' => 'penjualan',
+		        )
+	       ));
+	$form -> prepare();
+	echo $this->form()->openTag($form);
+?>
+<div id='formMessage'>
+	<ul>
+	<?php
+		if ($this->messages) {
+			foreach ($this->messages as $message) {
+				echo '<li>' . $message . '</li>';
+			}
+		}
+	?>
+	</ul>
+</div>
+
+<div id='headerContainer'>
+	<div id='formKasir'>
+		Kasir :
+		<?php echo ucwords(strtolower($kasir->getNama())); ?>
+	</div>
+	<div id='formTanggal'>
+		<?php
+		echo $this->formLabel($form->get('tglTrans'));?><br><?php
+		echo $this->formElement($form->get('tglTrans'));?><br><?php
+		echo $this->formElementErrors($form->get('tglTrans'));
+		?>
+	</div>
+	<br>
+	<div id='formCustomer'>
+		<?php
+		$txtCustomer = $form->get('customer');
+		$txtCustomer->setValue($this->customer);
+		echo $this->formLabel($form->get('customer'));?><br><?php
+		echo $this->formElement($form->get('customer'));?><br><?php
+		echo $this->formElementErrors($form->get('customer'));
+		?>
+	</div>
+	<br>
+</div>
+<div id="detailContainer">
+	<div id='formBuku'>
+		<?php
+		$dpdBuku = ($form->get('buku'));
+		$dpdBuku->setValueOptions($namaBuku);
+		
+		echo $this->formLabel($form->get('buku'));?><br><?php
+		echo $this->formElement($form->get('buku'));?><br><?php
+		echo $this->formElementErrors($form->get('buku'));
+		?>
+	</div>
+	<br>
+	<div id='formQty'>
+		<?php
+		echo $this->formLabel($form->get('qty'));?><br><?php
+		echo $this->formElement($form->get('qty'));?><br><?php
+		echo $this->formElementErrors($form->get('qty'));
+		?>
+	</div>
+	<br>
+	<div id='formAddEntry'>
+		<?php
+		echo $this->formElement($form->get('add'));
+		echo $this->formElementErrors($form->get('add'));
+		?>
+	</div>
+	<br>
+	<?php if(isset($this->mysession->tempDetail)) : ?>
+	<table class="CustomTableTrans">
+		<tr>
+			<td>Nama Buku</td>
+			<td>Qty</td>
+			<td>Harga</td>
+			<td>Subtotal</td>
+			<td></td>
+		</tr>
+		<?php $total = 0; ?>
+		<?php foreach ($this->mysession->tempDetail as $value) : ?>
+			<tr>
+				<td><?php echo $value[1]; ?></td>
+				<td><?php echo $value[2]; ?></td>
+				<td><?php echo $value[3]; ?></td>
+				<td><?php echo $value[4]; $total += $value[4] ?></td>
+				<form action="" method="post">
+					<input type="hidden" value="delete-<?php echo $value[0]; ?>" id="delete" name="delete">
+					<td><input type="submit" value="Delete" name="btnDelete" /></td>
+				</form>
+			</tr>
+		<?php endforeach; ?>
+		<tr>
+			<td colspan=3>Total</td>
+			<td><?php echo $total; ?></td>
+		</tr>
+	</table>
+	<?php endif; ?>
+</div>
+<div id='formSaveEntry'>
+	<?php
+	echo $this->formElement($form -> get('save'));
+	echo $this->formElementErrors($form -> get('save'));
+	?>
+</div>
+<br>
+<?php echo $this->form()->closeTag($form); ?>

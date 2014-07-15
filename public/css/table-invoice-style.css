@@ -1,0 +1,79 @@
+.CustomTableInvoice {
+	'margin: 0px;
+	'padding: 0px;
+	width: 100%;
+	'box-shadow: 10px 10px 5px #888888;
+	border: 1px solid #000;
+}
+
+.CustomTableInvoice table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.CustomTableInvoice table tr:first-child td:first-child {
+	
+}
+
+.CustomTableInvoice table tr:first-child td:last-child {
+
+}
+
+.CustomTableInvoice td {
+	vertical-align: middle;
+	border: 1px solid #000;
+	border-width: 0px 1px 1px 0px;
+	text-align: left;
+	padding: 7px;
+	font-size: 12px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #000;
+}
+
+.CustomTableInvoice tr:last-child td {
+	border-width: 0px 1px 0px 0px;
+}
+
+.CustomTableInvoice tr td:last-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CustomTableInvoice tr:last-child td:last-child {
+	border-width: 0px 0px 0px 0px;
+}
+
+.CustomTableInvoice tr:first-child td {
+	border: 0px solid #000000;
+	text-align: center;
+	border-width: 0px 0px 1px 1px;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #000;
+}
+
+.CustomTableInvoice tr:last-child td {
+	border: 0px solid #000000;
+	border-width: 0px 0px 1px 1px;
+	font-size: 16px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #000;
+}
+
+.CustomTableInvoice tr:first-child:hover td {
+	'background-color: #ff7f00;
+}
+
+.CustomTableInvoice tr:first-child td:first-child {
+	border-width: 0px 0px 1px 0px;
+}
+
+.CustomTableInvoice tr:first-child td:last-child {
+	border-width: 0px 0px 1px 1px;
+}

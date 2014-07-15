@@ -1,0 +1,49 @@
+<html>
+<body>
+<h1><?php echo $title; ?></h1>
+
+<?php foreach ($headers as $header) : ?>
+<div style="width:100%;display: inline-block;">
+<div style="width:100%; text-align: right"><?php echo 'Nomor Transaksi : ' . $header->getId(); ?><br><?php echo 'Tanggal : ' . $header->getTgl(); ?></div>
+<div style="width:200px;"></div>
+<?php foreach ($kasirs as $kasir) : ?>
+	<?php if ($header->getKasir() == $kasir->getId()) : ?>
+	<?php echo 'Kasir : ' . $kasir->getNama(); ?><br>
+	<?php endif; ?>
+<?php endforeach ?>
+
+<?php echo 'Customer : ' . $header->getCustomer(); ?><br>
+</div>
+<div id="detail">
+	<table border = "1" style="width:100%;border: 1px solid black;">
+		<tr>
+			<td>Nama Buku</td>
+			<td>Qty</td>
+			<td>Harga</td>
+			<td>Subtotal</td>
+		</tr>
+		<?php foreach ($details as $detail) : ?>
+			<?php if ($detail->getId() == $header->getId()) : ?>
+			<tr>
+				<?php foreach ($books as $book) : ?>
+					<?php if ($detail->getBuku() == $book->getId()) : ?>
+					<td><?php echo $book->getNama(); ?></td>
+					<?php endif; ?>
+				<?php endforeach ?>
+				<td><?php echo $detail->getQty(); ?></td>
+				<td><?php echo $detail->getHarga(); ?></td>
+				<td><?php echo $detail->getSubtotal(); ?></td>
+			</tr>
+			<?php endif; ?>
+		<?php endforeach ?>
+		<tr>
+			<td colspan="3">Total</td>
+			<td colspan="2"><?php echo $header->getTotal(); ?></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+</div>
+<?php endforeach; ?>
+</body>
+</html>

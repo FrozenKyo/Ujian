@@ -1,0 +1,88 @@
+<h1>Daftar Buku</h1>
+<?php 
+	$newEntryUrl = $this->url('buku', array('lang'=>$this->lang, 'action'=>'insert', 'page'=>$this->page));
+	$transaksiUrl = $this->url('transaksi', array('lang'=>$this->lang, 'action'=>'index'));
+	$editEntryUrl = $this->url('buku', array('lang'=>$this->lang, 'action'=>'update', 'page'=>$this->page));
+	$logoutUrl = $this->url('logout', array('action'=>'logout'));
+?>
+<script type="text/javascript">
+    function confirmDelete(x) {
+        if (confirm('Are you sure you want to delete this?')) {
+            return true;
+        } else {
+        	return false;
+        }
+    }
+</script>
+<a href="<?php echo $newEntryUrl; ?>">New Entry</a> &nbsp;
+<a href="<?php echo $transaksiUrl; ?>">Transaksi</a> &nbsp;
+<a href="<?php echo $logoutUrl; ?>">Logout</a> &nbsp;
+<?php 
+	$form = $this -> form;
+	$form->setAttribute('action', $this->url(
+	    'buku',
+	    array(
+	        'action' => 'index', 'page' => $this->page, 'lang' => $this->lang,
+	    )
+	));	
+	$form -> prepare();
+	echo $this->form()->openTag($form);
+?>
+<div id="searchContainer">
+	<div id='formId'>
+		<?php
+		$txtNama = $form->get('nama');
+		$txtNama->setValue($this->nama);
+		echo 'Search By ' . $this -> formLabel($form -> get('nama')); ?><BR>
+		<?php echo $this -> formElement($form -> get('nama')); ?>
+		<?php echo $this -> formElementErrors($form -> get('nama')); ?>
+	</div>
+	<div id='formSearch'>
+		<?php
+		echo $this -> formElement($form -> get('search'));
+		echo $this -> formElementErrors($form -> get('search'));
+		?>
+	</div>
+</div>
+<br>
+<div id="messageContainer">
+	<?php
+		if ($this->messages) {
+			foreach ($this->messages as $message) {
+				echo $message;
+			}
+		}
+	?>
+</div>
+<table class="CustomTable">
+	<tr>
+		<td>Kode Buku</td>
+		<td>Nama Buku</td>
+		<td>Stok</td>
+		<td>Harga</td>
+		<td>Status</td>
+		<td colspan="2"></td>
+	</tr>
+<?php foreach ($paginator as $buku) : ?>
+    <tr id="data-row">
+    	<td><?php echo $buku->getId(); ?></td>
+    	<td><?php echo $buku->getNama(); ?></td>
+    	<td><?php echo $buku->getStok(); ?></td>
+    	<td><?php echo $this->plugin->toMoney($buku->getHarga()); ?></td>
+    	<td><?php echo ($buku->getStatus() == 1) ? "Active" : "Inactive"; ?></td>
+    	<!--td><a href="#" id="remove-<?php echo $buku->getId(); ?>"class="delete-row">Delete</a></td-->
+    	<form action="" method="post">
+    	<input type="hidden" value="edit-<?php echo $buku->getId(); ?>" id="edit" name="edit">
+    	<td><input type="submit" value="Edit" name="btnEdit"/></td>
+    	</form>
+    	<form action="" method="post">
+    	<input type="hidden" value="delete-<?php echo $buku->getId(); ?>" id="delete" name="delete">
+    	<td><input type="submit" value="Delete" name="btnDelete" onclick="return confirmDelete()"/></td>
+    	</form>
+    </tr>
+<?php endforeach; ?>
+</table>
+<br>
+<div class="center-div">
+	<?= ( count($paginator) > 0 ) ? $this->paginationControl($paginator, 'Sliding', 'pager.phtml', array('lang'=>$lang)) : ""; ?>
+</div>
