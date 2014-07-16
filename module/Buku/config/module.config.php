@@ -2,8 +2,8 @@
 return array(
 	'controller_plugins' => array(
 		'invokables' => array(
-            'AuthPlugin' => 'Buku\Controller\Plugin\AuthPlugin',
-            'MyPlugin' => 'Buku\Controller\Plugin\MyPlugin',
+            'authPlugin' => 'Buku\Controller\Plugin\AuthPlugin',
+            'myPlugin' => 'Buku\Controller\Plugin\MyPlugin',
 		),
     ),
 	// Controller

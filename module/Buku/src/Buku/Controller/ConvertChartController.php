@@ -11,10 +11,10 @@ Class ConvertChartController extends AbstractActionController
 {
 	public function convertAction()
 	{
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		
 		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\Hjual');
+		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\HeaderJual');
 		$headers = $headerAdap->findAll();
 		
 		// Create new PHPExcel object

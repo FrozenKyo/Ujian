@@ -40,7 +40,6 @@ Class LoginController extends AbstractActionController
 	public function logoutAction()
     {
     	$auth = $this->getServiceLocator()->get('doctrine.authenticationservice.orm_default');
-        //$auth->getAdapter()->getSessionStorage()->forgetMe();
         $auth->clearIdentity();
          
         $this->flashmessenger()->addMessage("You've been logged out");

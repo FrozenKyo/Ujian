@@ -14,7 +14,7 @@ Class TestController extends AbstractActionController
 {
 	public function indexAction()
 	{
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		return new ViewModel(array(
 		    
 		));

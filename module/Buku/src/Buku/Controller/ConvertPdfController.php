@@ -11,12 +11,12 @@ Class ConvertPdfController extends AbstractActionController
 {
 	public function convertAction()
 	{
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\Hjual');
+		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\HeaderJual');
 		$headers = $headerAdap->findAll();
 		
-		$detailAdap = $objectManager->getRepository('Buku\Model\Entity\Djual');
+		$detailAdap = $objectManager->getRepository('Buku\Model\Entity\DetailJual');
 		$details = $detailAdap->findAll();
 		
 		$bukuAdap = $objectManager->getRepository('Buku\Model\Entity\Buku');
@@ -24,21 +24,6 @@ Class ConvertPdfController extends AbstractActionController
 		
 		$kasirAdap = $objectManager->getRepository('Buku\Model\Entity\Kasir');
 		$kasir = $kasirAdap->findAll();
-		
-		/*
-		// Create a new DOMPDF object
-		$dompdf = new \DOMPDF();
-		// Set the paper size to A4
-		$dompdf->set_paper('A4');
-		// Load the HTML
-		$dompdf->load_html($html);
-		// Render the PDF
-		$dompdf->render();
-		// Set the PDF Author
-		$dompdf->add_info('Author', 'I am the Author');
-		// Set the PDF Title
-		$dompdf->add_info('Title', 'My PDF Title');
-		*/
 		
 		$pdf = new PdfModel();
 		$pdf->setVariables(array(
@@ -48,9 +33,7 @@ Class ConvertPdfController extends AbstractActionController
 	      'books' => $buku,
 	      'kasirs' => $kasir,
 	    ));
-		$pdf->setOption("paperSize", "a4"); //Defaults to 8x11
-		//$pdf->setOption("basePath", realpath(APPLICATION_PATH . '/path/to/css/'));
-    	//$pdf->setOption("paperOrientation", "landscape"); //Defaults to portrai
+		$pdf->setOption("paperSize", "a4"); 
     	$pdf->setOption("filename", "laporan-penjualan");
     	return $pdf;
 	}

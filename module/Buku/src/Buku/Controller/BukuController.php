@@ -21,7 +21,7 @@ Class BukuController extends AbstractActionController
 			$session->filtername = '';
 		}
 		
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		
 		$form = new SearchForm;
 		
@@ -76,12 +76,12 @@ Class BukuController extends AbstractActionController
 		    'messages' => $this->flashMessenger(),
 		    'form' => $form,
 		    'nama' => $nama,
-		    'plugin' => $this->MyPlugin(),
+		    'plugin' => $this->myPlugin(),
 		));
 	}
 	
 	public function insertAction() {
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		$form = new InsertForm;
 		$cek = true;
 		
@@ -124,7 +124,7 @@ Class BukuController extends AbstractActionController
 	
 	private function deleteBook($id) {
 		echo '<script>$result</script>';
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 		$bukuAdap = $objectManager->getRepository('Buku\Model\Entity\Buku');
 		
@@ -137,7 +137,7 @@ Class BukuController extends AbstractActionController
 	}
 	
 	public function updateAction() {
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		$form = new InsertForm;
 		$cek = false;
 		

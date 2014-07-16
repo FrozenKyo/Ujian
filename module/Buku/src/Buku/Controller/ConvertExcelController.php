@@ -11,12 +11,12 @@ Class ConvertExcelController extends AbstractActionController
 {
 	public function convertAction()
 	{
-		$this->AuthPlugin()->checkAuth();
+		$this->authPlugin()->checkAuth();
 		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\Hjual');
+		$headerAdap = $objectManager->getRepository('Buku\Model\Entity\HeaderJual');
 		$headers = $headerAdap->findAll();
 		
-		$detailAdap = $objectManager->getRepository('Buku\Model\Entity\Djual');
+		$detailAdap = $objectManager->getRepository('Buku\Model\Entity\DetailJual');
 		$details = $detailAdap->findAll();
 		
 		// Create new PHPExcel object
@@ -94,10 +94,10 @@ Class ConvertExcelController extends AbstractActionController
 		header('Cache-Control: max-age=1');
 		
 		// If you're serving to IE over SSL, then the following may be needed
-		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-		header ('Pragma: public'); // HTTP/1.0
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header('Pragma: public'); // HTTP/1.0
 		
 		$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 		$objWriter->save('php://output');
