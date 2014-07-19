@@ -1,0 +1,22 @@
+.book-table tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.book-table tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+.book-table td:nth-child(1)
+{
+	width:80px;
+}
+.book-table td:nth-child(3)
+{
+	width:100px;
+}
+.book-table td:nth-child(4)
+{
+	width:100px;
+}
+.book-table td:nth-child(5)
+{
+	width:150px;
+}

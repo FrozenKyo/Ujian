@@ -1,0 +1,67 @@
+<div class="content-container">
+	<header class="center"><h1>Transaction Page</h1></header>
+	<div class="container container-fluid">
+		<div>
+		<?php
+			$detailSellForm = $this->detailSellForm;
+			$detailSellForm->setAttribute('action', $this->url('detail_sell', array('lang' => $this->lang,'customer' => $this->customer,'action' => 'detail_sell')));
+		 	$detailSellForm->prepare();
+		 	echo $this->form()->openTag($detailSellForm);
+		?>
+		<div class="panel panel-default">
+			<div class="panel-heading">Transaction Details</div>
+			<div class="panel-body">
+				<table>
+					<tr>
+						<td>
+					 		<?php echo $this->formLabel($detailSellForm->get('book')); ?>
+					 		<?php echo $this->formElement($detailSellForm->get('book')); ?>
+						</td>
+						<td>
+					 		&nbsp;
+					 		<?php echo $this->formLabel($detailSellForm->get('qty')); ?>
+					 		<?php echo $this->formElement($detailSellForm->get('qty')); ?>
+						</td>
+						<td>&nbsp;<?php echo $this->formElement($detailSellForm->get('add')); ?></td>
+					</tr>
+					<tr>
+						<td class="right"><?php echo $this->formElementErrors($detailSellForm->get('book')); ?></td>
+						<td class="right"><?php echo $this->formElementErrors($detailSellForm->get('qty')); ?></td>
+					</tr>
+				</table>
+			</div>
+			<div class="table table-responsive">
+				<table class="table table-striped table-hover DetailSellTable">
+					<th>No.</th>
+					<th>Book Name</th>
+					<th>Qty</th>
+					<th>Price</th>
+					<th class="right">Total</th>
+					<th></th>
+					<?php $rowCount = 0; $bookQty = 0; $bookPrice = 0; $total = 0; $grandTotal = 0; ?>
+					<?php foreach($this->transactionDetails as $transactionDetail): ?>
+					<tr>
+						<td><?php echo $this->escapeHtml(++$rowCount) ?></td>
+						<td><?php echo $transactionDetail['bookName'] ?></td>
+						<td class="center"><?php echo $this->escapeHtml($this->utilityPlugin->thousandSeparator($bookQty = $transactionDetail['bookQty'])) ?></td>
+						<td class="center"><?php echo $this->escapeHtml($this->utilityPlugin->toMoney($bookPrice = $transactionDetail['bookPrice'])) ?></td>
+						<td class="right"><?php echo $this->escapeHtml($this->utilityPlugin->toMoney($total = $bookQty * $bookPrice)) ?></td>
+							<?php $grandTotal += $total ?>
+						<td class="center">x</td>
+					</tr>
+					<?php endforeach; ?>
+					<tr>
+						<td colspan="2"><h1>Grand Total</h1></td>
+						<td colspan="3" class="right"><h1><?php echo $this->escapeHtml($this->utilityPlugin->thousandSeparator($grandTotal)); ?></h1></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="right"><?php echo $this->formSubmit($detailSellForm->get('save')); ?></div>
+		<?php
+			echo $this->form()->closeTag($detailSellForm);
+		?>
+		</div>
+	</div>
+</div>

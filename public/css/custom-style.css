@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+header 
+{
+	width: 100%;
+	margin: 15px;
+}
+.my-pager
+{
+	width: 100%;
+	
+}
+.no-bullet
+{
+	list-style: none;
+	color: red;
+}
+.center
+{
+	text-align: center;
+}
+
+.right
+{
+	text-align: right;
+}
+
+.message-container
+{
+	width: 100%;
+	'color: #F00;
+	margin: 10px 5px;
+	font: 14pt normal Tahoma;
+}
+
+.red-text
+{
+	color: #F00;
+}
+
+.green-text
+{
+	color: #0F0;
+}
+.book-table thead,
+.detail-table thead
+{
+	background: #E9E9E9;
+}
+.book-table th:nth-child(3),
+.book-table th:nth-child(4)
+{
+	text-align: center;
+}

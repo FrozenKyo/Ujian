@@ -1,0 +1,35 @@
+<div class="content-container">
+	<header class="center"><h1>Book Entry : New Book Data</h1></header>
+	<div class="message-container center"></div>
+	<div class="form-container">
+	<?php
+		$form = $this->bookForm;
+		$form->setAttribute('action', $this->url('new_entry', array('lang' => $this->lang,'action' => 'new')));
+	 	$form->prepare();
+		echo $this->form()->openTag($form);
+	?>
+	<table class="form-table">
+		<tr>
+			<td class="right"><?php echo $this->formLabel($form->get('name')); ?></td>
+			<td><?php echo $this->formElement($form->get('name')); ?></td>
+			<td><?php echo $this->formElementErrors($form->get('name')); ?></td>
+		</tr>
+		<tr>
+			<td class="right"><?php echo $this->formLabel($form->get('stock')); ?></td>
+			<td><?php echo $this->formElement($form->get('stock')); ?></td>
+			<td><?php echo $this->formElementErrors($form->get('stock')); ?></td>
+		</tr>
+		<tr>
+			<td class="right"><?php echo $this->formLabel($form->get('price')); ?></td>
+			<td><?php echo $this->formElement($form->get('price')); ?></td>
+			<td><?php echo $this->formElementErrors($form->get('price')); ?></td>
+		</tr>
+		<tr>
+			<td colspan="3"><?php echo $this->formSubmit($form->get('save')); ?></td>
+		</tr>
+	</table>
+	<?php
+		echo $this->form()->closeTag();
+	?>
+	</div>
+</div>

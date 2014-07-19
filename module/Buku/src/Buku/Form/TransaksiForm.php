@@ -78,8 +78,6 @@ class TransaksiForm extends Form
                 'value' => 'Add'
             ),
         ));
-		
-		
     }
 }
 ?>

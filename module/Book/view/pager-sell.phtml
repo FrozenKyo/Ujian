@@ -1,0 +1,38 @@
+<?php
+$url = $this->url('sell_transaction', array('lang'=>$this->lang));
+//handle parameter get <span class="wp-smiley emoji emoji-smile" title=":)">:)</span>
+$parameterGet = $this->Requesthelper();
+if ($parameterGet != ""){
+  $parameterGet = "?".$parameterGet;
+}
+?>
+ 
+<?php if ($this->pageCount): ?>
+      <ul class="pagination">
+      <?php if (isset($this->previous)): ?>
+            <li class="previous"><a href="<?= $url.'/1'; ?>">&laquo; first</a></li>
+            <li class="previous"><a href="<?= $url.'/'.$this->previous.$parameterGet; ?>">&lt; prev</a></li>
+      <?php else: ?>
+            <li class="disabled"><a href="#"><span class="sr-only">(current)</span>&laquo; first</a></li>
+            <li class="disabled"><a href="#"><span class="sr-only">(current)</span>&lt; prev</a></li>
+      <?php endif; ?>
+      <?php foreach ($this->pagesInRange as $page): ?>
+      <?php if ($page != $this->current): ?>
+            <li>
+                  <a class="nopage" href="<?= $url.'/'.$page.$parameterGet; ?>"> <?= $page; ?> </a>
+            </li>
+      <?php else: ?>
+            <li class="active">
+                  <a><?= $page; ?></a>
+            </li>
+      <?php endif; ?>
+      <?php endforeach; ?>
+      <?php if (isset($this->next)): ?>
+            <li><a href="<?= $url.'/'.$this->next.$parameterGet; ?>">next &gt;</a></li>
+            <li><a href="<?= $url.'/'.$this->pageCount.$parameterGet; ?>">last &raquo;</a></li>
+      <?php else: ?>
+            <li class="disabled"><a>next &gt;</a></li>
+            <li class="disabled"><a>last &raquo;</a></li>
+      <?php endif; ?>
+      </ul>
+<?php endif; ?>

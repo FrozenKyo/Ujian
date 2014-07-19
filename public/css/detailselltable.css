@@ -1,0 +1,26 @@
+.DetailSellTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.DetailSellTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+.DetailSellTable td:nth-child(1)
+{
+	width:50px;
+}
+.DetailSellTable td:nth-child(3)
+{
+	width:80px;
+}
+.DetailSellTable td:nth-child(4)
+{
+	width:100px;
+}
+.DetailSellTable td:nth-child(5)
+{
+	width:120px;
+}
+.DetailSellTable td:last-child
+{
+	width:20px;
+}

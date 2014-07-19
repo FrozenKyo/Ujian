@@ -1,0 +1,17 @@
+<div class="content-container">
+	<header class="center"><h1>Book Entry : Edit Book Data</h1></header>
+	<div class="message-container center"></div>
+	<div class="form-container">
+	<?php
+		$form = $this->bookForm;
+		$form->setAttribute('action', $this->url('edit_entry', array('lang' => $this->lang,'action' => 'edit')));
+	 	$form->prepare();
+		echo $this->form()->openTag($form);
+		echo $this->formRow($form->get('name'));
+		echo $this->formRow($form->get('stock'));
+		echo $this->formRow($form->get('price'));
+		echo $this->formSubmit($form->get('save'));
+		echo $this->form()->closeTag();
+	?>
+	</div>
+</div>

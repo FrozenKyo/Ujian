@@ -123,7 +123,6 @@ Class BukuController extends AbstractActionController
 	}
 	
 	private function deleteBook($id) {
-		echo '<script>$result</script>';
 		$this->authPlugin()->checkAuth();
 		$objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 		$bukuAdap = $objectManager->getRepository('Buku\Model\Entity\Buku');

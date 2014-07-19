@@ -10,10 +10,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.*",
-        "zendframework/zend-developer-tools": "dev-master",
         "doctrine/doctrine-module": "dev-master",
-        "doctrine/doctrine-orm-module": "dev-master",
-        "dino/dompdf-module": "dev-master",
-        "phpoffice/phpexcel": "1.8.0"
+        "doctrine/doctrine-orm-module": "dev-master"
     }
 }

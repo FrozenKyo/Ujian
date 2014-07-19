@@ -13,9 +13,9 @@ return array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/buku/index',
+                    'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Buku\Controller\Buku',
+                        'controller' => 'Book\Controller\Book',
                         'action'     => 'index',
                     ),
                 ),

@@ -1,0 +1,26 @@
+<?php
+$lang = $this->lang;
+?>
+<div class="content-container">
+	<header class="center"><h1>Header Sell Page</h1></header>
+	<div class="message-container center">
+		<?php
+		foreach ($this->messages as $message) {
+			echo $message;
+		}
+		?>
+	</div>
+	<div class="form-container">
+		<div>
+		<?php
+			$headerSellForm = $this->headerSellForm;
+			$headerSellForm->setAttribute('action', $this->url('header_sell', array('lang' => $this->lang,'action' => 'header_sell')));
+		 	$headerSellForm->prepare();
+			echo $this->form()->openTag($headerSellForm);
+			echo $this->formRow($headerSellForm->get('customer'));
+			echo $this->formSubmit($headerSellForm->get('next'));
+			echo $this->form()->closeTag($headerSellForm);
+		?>
+		<div>
+	</div>
+</div>
